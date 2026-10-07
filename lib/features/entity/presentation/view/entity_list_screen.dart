@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wikidata_catalog/common/navigation/app_router.dart';
 import 'package:wikidata_catalog/common/widgets/app_scaffold.dart';
 import 'package:wikidata_catalog/features/entity/presentation/bloc/list/entity_list_cubit.dart';
 import 'package:wikidata_catalog/features/entity/presentation/bloc/list/entity_list_state.dart';
@@ -24,6 +26,7 @@ class EntityListScreen extends StatelessWidget {
             return EntityCard(
               entity: entity,
               typeLabel: state.typeLabelOf(entity),
+              onTap: () => context.push(AppRoutes.detail(entity.id)),
             );
           },
         ),

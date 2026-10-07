@@ -1,4 +1,36 @@
 {
   "@@locale": "ru",
-  "appTitle": "Каталог Wikidata"
+  "appTitle": "Каталог Wikidata",
+  "detailTitle": "Сущность",
+  "detailNotFound": "Сущности «{id}» в каталоге нет",
+  "@detailNotFound": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "pageNotFound": "Такой страницы нет",
+  "sectionAliases": "Также известно как",
+  "sectionProperties": "Свойства",
+  "sectionWikipedia": "Статья в Википедии",
+  "propertyInstanceOf": "Экземпляр",
+  "propertySubclassOf": "Подкласс от",
+  "propertyCountry": "Страна",
+  "propertyCitizenship": "Гражданство",
+  "propertyPlaceOfBirth": "Место рождения",
+  "propertyDateOfBirth": "Дата рождения",
+  "propertyDateOfDeath": "Дата смерти",
+  "propertyOccupation": "Род занятий",
+  "propertyNotableWork": "Известные работы",
+  "propertyCreator": "Автор",
+  "propertyLocation": "Местонахождение",
+  "propertyAdminUnit": "Административная единица",
+  "propertyCapital": "Столица",
+  "propertyPopulation": "Население",
+  "propertyInception": "Дата основания",
+  "propertyPartOf": "Часть от",
+  "propertyParentBody": "Родительское небесное тело",
+  "propertyInventor": "Изобретатель или первооткрыватель",
+  "propertyWebsite": "Официальный сайт"
 }
