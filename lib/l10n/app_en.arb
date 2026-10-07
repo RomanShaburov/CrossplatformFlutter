@@ -2,6 +2,8 @@
   "@@locale": "en",
   "appTitle": "Wikidata Catalog",
   "actionToggleTheme": "Toggle theme",
+  "actionToggleLanguage": "Switch language",
+  "languageCode": "EN",
   "detailTitle": "Entity",
   "detailNotFound": "Entity «{id}» is not in the catalog",
   "@detailNotFound": {

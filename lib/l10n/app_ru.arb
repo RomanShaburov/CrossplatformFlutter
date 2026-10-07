@@ -2,6 +2,8 @@
   "@@locale": "ru",
   "appTitle": "Каталог Wikidata",
   "actionToggleTheme": "Переключить тему",
+  "actionToggleLanguage": "Сменить язык",
+  "languageCode": "RU",
   "detailTitle": "Сущность",
   "detailNotFound": "Сущности «{id}» в каталоге нет",
   "@detailNotFound": {

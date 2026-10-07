@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wikidata_catalog/common/locale/locale_cubit.dart';
 import 'package:wikidata_catalog/common/navigation/app_router.dart';
 import 'package:wikidata_catalog/common/theme/app_theme.dart';
 import 'package:wikidata_catalog/common/theme/theme_cubit.dart';
@@ -26,15 +27,17 @@ class App extends StatelessWidget {
                 EntityListCubit(context.read<IEntityRepository>())..load(),
           ),
           BlocProvider(create: (_) => ThemeCubit()),
+          BlocProvider(create: (_) => LocaleCubit()),
         ],
-        child: BlocBuilder<ThemeCubit, ThemeMode>(
-          builder: (context, themeMode) => MaterialApp.router(
+        child: Builder(
+          builder: (context) => MaterialApp.router(
             routerConfig: AppRouter.router,
             onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
-            themeMode: themeMode,
+            themeMode: context.watch<ThemeCubit>().state,
+            locale: context.watch<LocaleCubit>().state,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
           ),
