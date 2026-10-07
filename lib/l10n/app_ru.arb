@@ -35,5 +35,15 @@
   "propertyPartOf": "Часть от",
   "propertyParentBody": "Родительское небесное тело",
   "propertyInventor": "Изобретатель или первооткрыватель",
-  "propertyWebsite": "Официальный сайт"
+  "propertyWebsite": "Официальный сайт",
+  "searchHint": "Поиск по названию",
+  "actionClearSearch": "Очистить поиск",
+  "searchNothingFound": "По запросу «{query}» ничего не найдено",
+  "@searchNothingFound": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  }
 }

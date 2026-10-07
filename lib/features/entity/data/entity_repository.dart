@@ -17,6 +17,18 @@ final class EntityRepository implements IEntityRepository {
   }
 
   @override
+  Future<List<EntityModel>> searchEntities(String query) async {
+    final needle = query.trim().toLowerCase();
+    if (needle.isEmpty) return mockEntities;
+    return [
+      for (final entity in mockEntities)
+        if (entity.label.toLowerCase().contains(needle) ||
+            entity.aliases.any((alias) => alias.toLowerCase().contains(needle)))
+          entity,
+    ];
+  }
+
+  @override
   Future<Map<String, String>> getLabels(Iterable<String> ids) async {
     final wanted = ids.toSet();
     return {

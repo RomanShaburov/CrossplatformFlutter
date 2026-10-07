@@ -35,5 +35,15 @@
   "propertyPartOf": "Part of",
   "propertyParentBody": "Parent astronomical body",
   "propertyInventor": "Discoverer or inventor",
-  "propertyWebsite": "Official website"
+  "propertyWebsite": "Official website",
+  "searchHint": "Search by name",
+  "actionClearSearch": "Clear search",
+  "searchNothingFound": "Nothing found for «{query}»",
+  "@searchNothingFound": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  }
 }

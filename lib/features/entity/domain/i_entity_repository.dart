@@ -5,5 +5,7 @@ abstract interface class IEntityRepository {
 
   Future<EntityModel?> getEntity(String id);
 
+  Future<List<EntityModel>> searchEntities(String query);
+
   Future<Map<String, String>> getLabels(Iterable<String> ids);
 }
