@@ -5,6 +5,7 @@ void main(List<String> args) {
   final dir = Directory(args.isEmpty ? 'lib/l10n' : args.first);
   exitCode = checkArb(dir, stdout.writeln) ? 0 : 1;
 }
+
 bool checkArb(Directory dir, void Function(String line) log) {
   if (!dir.existsSync()) {
     log('нет папки с ARB: ${dir.path}');
@@ -57,6 +58,7 @@ bool checkArb(Directory dir, void Function(String line) log) {
   }
   return ok;
 }
+
 String _templateName(Directory dir) {
   final yaml = File('${dir.parent.parent.path}/l10n.yaml');
   if (yaml.existsSync()) {
@@ -79,6 +81,7 @@ Map<String, Set<String>> _messages(File file) {
         entry.key: _placeholders(entry.value.toString()),
   };
 }
+
 Set<String> _placeholders(String message) {
   final names = <String>{};
   var depth = 0;
