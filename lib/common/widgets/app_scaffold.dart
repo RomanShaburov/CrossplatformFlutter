@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wikidata_catalog/common/widgets/theme_toggle_button.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({super.key, required this.title, required this.body});
@@ -9,7 +10,7 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(title), actions: const [ThemeToggleButton()]),
       body: body,
     );
   }

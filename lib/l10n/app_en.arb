@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "appTitle": "Wikidata Catalog",
+  "actionToggleTheme": "Toggle theme",
   "detailTitle": "Entity",
   "detailNotFound": "Entity «{id}» is not in the catalog",
   "@detailNotFound": {

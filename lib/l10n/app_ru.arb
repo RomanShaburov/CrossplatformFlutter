@@ -1,6 +1,7 @@
 {
   "@@locale": "ru",
   "appTitle": "Каталог Wikidata",
+  "actionToggleTheme": "Переключить тему",
   "detailTitle": "Сущность",
   "detailNotFound": "Сущности «{id}» в каталоге нет",
   "@detailNotFound": {
