@@ -1,0 +1,49 @@
+{
+  "@@locale": "en",
+  "appTitle": "Wikidata Catalog",
+  "actionToggleTheme": "Toggle theme",
+  "actionToggleLanguage": "Switch language",
+  "languageCode": "EN",
+  "detailTitle": "Entity",
+  "detailNotFound": "Entity «{id}» is not in the catalog",
+  "@detailNotFound": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "pageNotFound": "Page not found",
+  "sectionAliases": "Also known as",
+  "sectionProperties": "Properties",
+  "sectionWikipedia": "Wikipedia article",
+  "propertyInstanceOf": "Instance of",
+  "propertySubclassOf": "Subclass of",
+  "propertyCountry": "Country",
+  "propertyCitizenship": "Country of citizenship",
+  "propertyPlaceOfBirth": "Place of birth",
+  "propertyDateOfBirth": "Date of birth",
+  "propertyDateOfDeath": "Date of death",
+  "propertyOccupation": "Occupation",
+  "propertyNotableWork": "Notable work",
+  "propertyCreator": "Creator",
+  "propertyLocation": "Location",
+  "propertyAdminUnit": "Administrative unit",
+  "propertyCapital": "Capital",
+  "propertyPopulation": "Population",
+  "propertyInception": "Inception",
+  "propertyPartOf": "Part of",
+  "propertyParentBody": "Parent astronomical body",
+  "propertyInventor": "Discoverer or inventor",
+  "propertyWebsite": "Official website",
+  "searchHint": "Search by name",
+  "actionClearSearch": "Clear search",
+  "searchNothingFound": "Nothing found for «{query}»",
+  "@searchNothingFound": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  }
+}
