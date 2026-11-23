@@ -20,3 +20,7 @@ final class EntityDetailNotFound extends EntityDetailState {
 
   final String id;
 }
+
+final class EntityDetailFailed extends EntityDetailState {
+  const EntityDetailFailed();
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wikidata_catalog/common/widgets/app_scaffold.dart';
+import 'package:wikidata_catalog/common/widgets/load_error_view.dart';
 import 'package:wikidata_catalog/features/entity/domain/entity_model.dart';
 import 'package:wikidata_catalog/features/entity/domain/i_entity_repository.dart';
 import 'package:wikidata_catalog/features/entity/presentation/bloc/detail/entity_detail_bloc.dart';
@@ -19,6 +20,7 @@ class EntityDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      key: ValueKey(id),
       create: (context) =>
           EntityDetailBloc(context.read<IEntityRepository>())
             ..add(EntityDetailOpened(id)),
@@ -28,6 +30,10 @@ class EntityDetailScreen extends StatelessWidget {
           builder: (context, state) => switch (state) {
             EntityDetailLoading() => const Center(
               child: CircularProgressIndicator(),
+            ),
+            EntityDetailFailed() => LoadErrorView(
+              onRetry: () =>
+                  context.read<EntityDetailBloc>().add(EntityDetailOpened(id)),
             ),
             EntityDetailNotFound(:final id) => Center(
               child: Text(AppLocalizations.of(context).detailNotFound(id)),

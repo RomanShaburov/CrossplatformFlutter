@@ -1,11 +1,9 @@
-import 'package:wikidata_catalog/features/entity/domain/entity_model.dart';
+import 'entity_model.dart';
+
+typedef EntityPage = ({List<EntityModel> items, int? next});
 
 abstract interface class IEntityRepository {
-  Future<List<EntityModel>> getEntities();
-
+  Future<EntityPage> getPage({required String query, required int offset});
   Future<EntityModel?> getEntity(String id);
-
-  Future<List<EntityModel>> searchEntities(String query);
-
   Future<Map<String, String>> getLabels(Iterable<String> ids);
 }
