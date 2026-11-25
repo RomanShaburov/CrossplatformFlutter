@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wikidata_catalog/common/navigation/app_router.dart';
 import 'package:wikidata_catalog/common/widgets/app_scaffold.dart';
+import 'package:wikidata_catalog/common/widgets/load_error_view.dart';
 import 'package:wikidata_catalog/features/entity/presentation/bloc/list/entity_list_cubit.dart';
 import 'package:wikidata_catalog/features/entity/presentation/bloc/list/entity_list_state.dart';
 import 'package:wikidata_catalog/features/entity/presentation/view/widgets/entity_card.dart';
@@ -28,23 +29,48 @@ class EntityListScreen extends StatelessWidget {
           ),
           Expanded(
             child: BlocBuilder<EntityListCubit, EntityListState>(
-              builder: (context, state) => state.nothingFound
-                  ? _NothingFound(query: state.query)
-                  : ListView.separated(
-                      key: const PageStorageKey('entity-list'),
-                      padding: const EdgeInsets.all(16),
-                      itemCount: state.items.length,
-                      separatorBuilder: (_, _) => const SizedBox(height: 12),
-                      itemBuilder: (context, index) {
-                        final entity = state.items[index];
-                        return EntityCard(
-                          entity: entity,
-                          typeLabel: state.typeLabelOf(entity),
-                          onTap: () =>
-                              context.push(AppRoutes.detail(entity.id)),
-                        );
-                      },
-                    ),
+              builder: (context, state) {
+                if (state.status == ListStatus.loading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (state.status == ListStatus.failed) {
+                  return LoadErrorView(onRetry: cubit.load);
+                }
+                return state.nothingFound
+                    ? _NothingFound(query: state.query)
+                    : ListView.separated(
+                        key: PageStorageKey('entity-list-${state.query}'),
+                        padding: const EdgeInsets.all(16),
+                        itemCount:
+                            state.items.length + (state.next == null ? 0 : 1),
+                        separatorBuilder: (_, _) => const SizedBox(height: 12),
+                        itemBuilder: (context, index) {
+                          if (index == state.items.length) {
+                            if (state.status == ListStatus.moreFailed) {
+                              return LoadErrorView(onRetry: cubit.loadMore);
+                            }
+                            if (state.status == ListStatus.ready) {
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                if (!cubit.isClosed &&
+                                    identical(cubit.state, state)) {
+                                  cubit.loadMore();
+                                }
+                              });
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          final entity = state.items[index];
+                          return EntityCard(
+                            entity: entity,
+                            typeLabel: state.typeLabelOf(entity),
+                            onTap: () =>
+                                context.push(AppRoutes.detail(entity.id)),
+                          );
+                        },
+                      );
+              },
             ),
           ),
         ],

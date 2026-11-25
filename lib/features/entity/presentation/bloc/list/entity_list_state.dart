@@ -1,16 +1,30 @@
 import 'package:wikidata_catalog/features/entity/domain/entity_model.dart';
 import 'package:wikidata_catalog/features/entity/presentation/utils/entity_format.dart';
 
+enum ListStatus { loading, ready, failed, loadingMore, moreFailed }
+
 final class EntityListState {
   const EntityListState({
+    this.status = ListStatus.loading,
     this.query = '',
     this.items = const [],
     this.labels = const {},
+    this.next,
   });
 
+  final ListStatus status;
   final String query;
   final List<EntityModel> items;
   final Map<String, String> labels;
+  final int? next;
+
+  EntityListState withStatus(ListStatus value) => EntityListState(
+    query: query,
+    items: items,
+    labels: labels,
+    next: next,
+    status: value,
+  );
 
   bool get nothingFound => items.isEmpty && query.trim().isNotEmpty;
 
@@ -18,14 +32,4 @@ final class EntityListState {
     final typeId = entity.typeId;
     return typeId == null ? null : labels[typeId] ?? typeId;
   }
-
-  EntityListState copyWith({
-    String? query,
-    List<EntityModel>? items,
-    Map<String, String>? labels,
-  }) => EntityListState(
-    query: query ?? this.query,
-    items: items ?? this.items,
-    labels: labels ?? this.labels,
-  );
 }

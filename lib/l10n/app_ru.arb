@@ -13,6 +13,8 @@
       }
     }
   },
+  "loadFailed": "Не удалось загрузить данные Wikidata. Проверьте подключение и попробуйте ещё раз.",
+  "actionRetry": "Повторить",
   "pageNotFound": "Такой страницы нет",
   "sectionAliases": "Также известно как",
   "sectionProperties": "Свойства",

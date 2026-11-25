@@ -1,9 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wikidata_catalog/common/locale/locale_cubit.dart';
 import 'package:wikidata_catalog/common/navigation/app_router.dart';
+import 'package:wikidata_catalog/common/network/dio_client.dart';
 import 'package:wikidata_catalog/common/theme/app_theme.dart';
 import 'package:wikidata_catalog/common/theme/theme_cubit.dart';
+import 'package:wikidata_catalog/features/entity/data/api/entity_api.dart';
+import 'package:wikidata_catalog/features/entity/data/data_sources/network_entity_data_source.dart';
 import 'package:wikidata_catalog/features/entity/data/entity_repository.dart';
 import 'package:wikidata_catalog/features/entity/domain/i_entity_repository.dart';
 import 'package:wikidata_catalog/features/entity/presentation/bloc/list/entity_list_cubit.dart';
@@ -16,8 +20,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider<Dio>(
+          create: (_) => createDio(),
+          dispose: (dio) => dio.close(),
+        ),
         RepositoryProvider<IEntityRepository>(
-          create: (_) => const EntityRepository(),
+          create: (context) => EntityRepository(
+            NetworkEntityDataSource(EntityApi(context.read<Dio>())),
+          ),
         ),
       ],
       child: MultiBlocProvider(
